@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.zp.xuan</groupId>
+  <artifactId>FinancialManager</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  
+  <properties>
+		<base.version>4.1.3.RELEASE</base.version>
+		<mybatis.version>3.2.8</mybatis.version>
+		<mybatis.spring.version>1.2.2</mybatis.spring.version>
+		<mybatis.paginator.version>1.2.15</mybatis.paginator.version>
+		<mybatis.pagehelper.version>3.4.2</mybatis.pagehelper.version>
+		<mysql.version>5.1.32</mysql.version>
+		<druid.version>1.0.9</druid.version>
+		<httpcore.version>4.4.3</httpcore.version>
+		<httpclient.version>4.5.1</httpclient.version>
+		<httpmime.version>4.5.1</httpmime.version>
+		<log4j.version>1.2.17</log4j.version>
+		<spring.version>4.1.3.RELEASE</spring.version>
+		<junit.version>4.12</junit.version>
+	</properties>
+  
+  <modules>
+  	<module>fm-pojo</module>
+  	<module>fm-mapper</module>
+  	<module>fm-server</module>
+  	<module>fm-web</module>
+  </modules>
+</project>

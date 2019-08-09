@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	<!-- 扫描 -->
+	<context:component-scan base-package="com.zp.xuan.controller" />
+	<!-- <context:annotation-config /> -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+	        <bean class="org.springframework.http.converter.ResourceHttpMessageConverter" >
+	        </bean>
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+	         <property name="supportedMediaTypes">
+	            <list>
+	              <value>text/html;charset=UTF-8</value>
+	              <value>application/json;charset=UTF-8</value>
+	            </list> 
+	         </property>
+	        </bean>
+	    </mvc:message-converters>
+	</mvc:annotation-driven>
+	<context:annotation-config></context:annotation-config>
+	<!-- 试图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/page/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<!--在拦截器mapping中除去下面的url -->
+            <mvc:exclude-mapping path="/mobile/authen/*"/>
+        	<bean class="com.zp.xuan.controller.Interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/mobile/admin/**" />
+        	<bean class="com.zp.xuan.controller.Interceptor.PermissionInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	
+
+	<!-- Spring MVC控制器用@ResponseBody声明返回json数据报406的问题 start -->
+
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Spring MVC控制器用@ResponseBody声明返回json数据报406的问题 stop -->
+
+	<!-- 由于在web.xml中定义的url拦截形式为“/”表示拦截所有的url请求， 包括静态资源例如css、js等。 所以需要在springmvc.xml中添加资源映射标签 -->
+	
+	<mvc:resources location="/WEB-INF/page/css/" mapping="/css/**"  cache-period="31556926" />
+	<mvc:resources location="/WEB-INF/page/css/img/" mapping="/img/**" cache-period="31556926" />
+	<mvc:resources location="/WEB-INF/page/css/bootstrap/" mapping="/css/bootstrap/**"  cache-period="31556926" />
+	<mvc:resources location="/WEB-INF/page/js/" mapping="/js/**"  cache-period="31556926" />
+	<mvc:resources location="/WEB-INF/page/js/bootstrap/" mapping="/js/bootstrap/**"  cache-period="31556926" />
+	<mvc:resources location="/WEB-INF/page/js/common/" mapping="/js/common/**"  cache-period="31556926" />
+	
+	
+	
+	<!-- 定义文件上传解析器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设定默认编码 -->
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+		<property name="maxUploadSize" value="5242880"></property>
+	</bean>
+	
+	
+</beans>

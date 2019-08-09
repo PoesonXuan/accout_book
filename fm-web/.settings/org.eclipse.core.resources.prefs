@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/main/java=utf-8
+encoding//src/main/java/com/zp/xuan/controller/Interceptor/PermissionInterceptor.java=UTF-8
+encoding//src/main/java/com/zp/xuan/controller/mobile/authen/AdminConroller.java=UTF-8
+encoding//src/main/java/com/zp/xuan/controller/mobile/authen/UserController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/page/jsp/error/error.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/page/jsp/pages/userInfo.jsp=UTF-8
+encoding//src/test/java=utf-8

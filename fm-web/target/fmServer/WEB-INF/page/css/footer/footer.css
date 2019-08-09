@@ -1,0 +1,13 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.d_footer{
+	position:relative;
+	width: 100%;
+	height: 8em;
+	background-color: red;/* #F8F8F8;; */
+	bottom: 0em;
+	margin-bottom: 0em;
+}
